@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?> - xml блок
+<oval_definitions> - схема и неймспейсы
+<generator> - блок генератора (информация о авторе или инструменте)
+<oval:product_name> - название продукта
+<oval:product_version> - версия продукта
+<oval:schema_version> - версия схемы
+<oval:timestamp> - timestamp
+<oval:content_version> - версия контента
+<definitions> - блок с информацией об уязвимостях/патчах
+<definition> - блок с информацией об уязвимости/патче
+
+<metadata> - блок с общей информацией 
+<title> - заголовок
+<affected family="unix"> - семейство объектов воздействия
+<platform> - платформа
+<reference ref_id="RHBA-2019:1992" ref_url="https://access.redhat.com/errata/RHBA-2019:1992" source="RHSA"/> - дополнительная информация
+<description> - описание
+<advisory from="secalert@redhat.com"> 
+<severity> - критичность
+<rights> - права 
+<issued date="2019-07-30"/> - дата выпуска
+<updated date="2019-07-30"/> - дата обновления 
+<cve cvss3="5.4/CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:N" cwe="CWE-285" href="https://access.redhat.com/security/cve/CVE-2019-0816" impact="moderate" public="20190305">CVE-2019-0816</cve> - список известных уявзимостей
+<bugzilla> - ссылка на bugzilla
+<affected_cpe_list> - общий перечень платформ
+<cpe>cpe:/a:redhat:enterprise_linux:8</cpe> - платформа
+
+<criteria operator="OR"> - критерий
+<criterion comment="Red Hat Enterprise Linux must be installed" test_ref="oval:com.redhat.rhba:tst:20191992005"/> - комментарий критерия и ссылка на тест
+
+<tests> - тесты
+<red-def:rpminfo_test check="at least one" comment="cloud-init is earlier than 0:18.5-1.el8.4" id="oval:com.redhat.rhba:tst:20191992001" version="635">
+<red-def:object object_ref="oval:com.redhat.rhba:obj:20191992001"/>
+<red-def:state state_ref="oval:com.redhat.rhba:ste:20191992001"/>
+
+<objects> - объекты
+<red-def:rpmverifyfile_object id="oval:com.redhat.rhba:obj:20191992002" version="635">
+ <red-def:behaviors noconfigfiles="true" noghostfiles="true" nogroup="true" nolinkto="true" nomd5="true" nomode="true" nomtime="true" nordev="true" nosize="true" nouser="true"/>
+ <red-def:name operation="pattern match"/>
+ <red-def:epoch operation="pattern match"/>
+ <red-def:version operation="pattern match"/>
+ <red-def:release operation="pattern match"/>
+ <red-def:arch operation="pattern match"/>
+ <red-def:filepath>/etc/redhat-release</red-def:filepath>
+
+<states> - состояния
+<red-def:rpminfo_state id="oval:com.redhat.rhba:ste:20220348001" version="634">
+ <red-def:arch datatype="string" operation="pattern match">aarch64|ppc64le|s390x|x86_64</red-def:arch>
+ <red-def:evr datatype="evr_string" operation="less than">0:1.19.9-1.module+el8.5.0+12236+c988d830</red-def:evr>
+
+<variables> - переменные
+<local_variable comment="Get saved_entry in /boot/grub2/grubenv" datatype="int" id="oval:com.redhat.rhsa:var:20191167001" version="643">
+ <arithmetic arithmetic_operation="add">
+  <literal_component datatype="int">1</literal_component>
+  <object_component item_field="text" object_ref="oval:com.redhat.rhsa:obj:20191167027"/>
+ </arithmetic>
+</local_variable>
